@@ -11,3 +11,7 @@ class LotsBrocante(LotsBrocanteTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+
+  def Lot_change(self, **event_args):
+    """Search in datatable this number"""
+    pass

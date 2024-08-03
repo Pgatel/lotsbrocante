@@ -17,9 +17,10 @@ components:
     type: Label
     layout_properties: {grid_position: 'NWOAWV,WJUULY'}
   - name: Lot
-    properties: {}
+    properties: {height: 41}
     type: TextArea
     layout_properties: {grid_position: 'NWOAWV,CLQHLR'}
+    event_bindings: {change: Lot_change}
   - name: spacer_2
     properties: {height: 32}
     type: Spacer
@@ -29,7 +30,7 @@ components:
   name: navbar_links
   layout_properties: {slot: nav-right}
 - name: Title
-  properties: {content: Lots Brocante, align: center, font_size: 30}
+  properties: {content: Lots Brocante, align: center, font_size: 30, format: plain_text, foreground: 'theme:On Background', background: 'theme:Primary Overlay 1'}
   type: RichText
   layout_properties: {slot: title}
   data_bindings:
