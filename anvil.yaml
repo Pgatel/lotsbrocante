@@ -46,6 +46,15 @@ db_schema:
     - name: NumeroLot
       admin_ui: {order: -1, width: 101}
       type: string
+    - name: Facade
+      admin_ui: {order: 7, width: 92}
+      type: number
+    - name: Profondeur
+      admin_ui: {order: 8, width: 115}
+      type: number
+    - name: Surface
+      admin_ui: {order: 9, width: 97}
+      type: number
     title: LotsBrocante
   files:
     client: none
@@ -65,7 +74,7 @@ db_schema:
     client: search
     server: full
     columns:
-    - name: Zone
+    - name: zone
       admin_ui: {order: 0, width: 149}
       type: string
     title: Zones

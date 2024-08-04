@@ -18,7 +18,8 @@ components:
     layout_properties: {grid_position: 'NWOAWV,RBIRGN'}
     event_bindings: {change: pair_change}
   - name: zone
-    properties: {}
+    properties:
+      items: [A, B]
     type: DropDown
     layout_properties: {grid_position: 'NWOAWV,YSPVXB'}
     event_bindings: {change: zone_change}
@@ -27,9 +28,9 @@ components:
     type: Label
     layout_properties: {grid_position: 'NWOAWV,WJUULY'}
   - name: lot
-    properties: {height: 41}
-    type: TextArea
-    layout_properties: {grid_position: 'NWOAWV,CLQHLR'}
+    properties: {}
+    type: DropDown
+    layout_properties: {grid_position: 'NWOAWV,GCOSMI'}
     event_bindings: {change: lot_change}
   - name: spacer_2
     properties: {height: 32}
