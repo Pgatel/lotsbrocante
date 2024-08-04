@@ -29,6 +29,12 @@ components:
   properties: {}
   name: navbar_links
   layout_properties: {slot: nav-right}
+  components:
+  - name: Populate
+    properties: {text: Populate}
+    type: Button
+    event_bindings: {click: Populate_click}
+    layout_properties: {}
 - name: Title
   properties: {content: Lots Brocante, align: center, font_size: 30, format: plain_text, foreground: 'theme:On Background', background: 'theme:Primary Overlay 1'}
   type: RichText
