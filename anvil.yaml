@@ -16,7 +16,7 @@ services:
 startup: {type: form, module: LotsBrocante}
 db_schema:
   lotsbrocante:
-    client: search
+    client: full
     server: full
     columns:
     - name: Nom
@@ -40,9 +40,12 @@ db_schema:
     - name: Zone
       admin_ui: {order: 6, width: 105}
       type: string
+    - name: NumeroLot
+      admin_ui: {order: -1, width: 101}
+      type: string
     title: LotsBrocante
   zones:
-    client: none
+    client: search
     server: full
     columns:
     - name: Zone
