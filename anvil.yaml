@@ -37,17 +37,16 @@ db_schema:
     - name: Localité
       admin_ui: {order: 5, width: 92}
       type: string
-    - name: Surface_Samedi
-      admin_ui: {order: 6, width: 131}
-      type: number
-    - name: Surface_Dimanche
-      admin_ui: {order: 7, width: 143}
-      type: number
-    - name: Lots_Samedi
-      admin_ui: {order: 8, width: 109}
-      type: string
-    - name: Lots_Dimanche
-      admin_ui: {width: 200, order: 9}
+    - name: Zone
+      admin_ui: {order: 6, width: 105}
       type: string
     title: LotsBrocante
+  zones:
+    client: none
+    server: full
+    columns:
+    - name: Zone
+      admin_ui: {order: 0, width: 149}
+      type: string
+    title: Zones
 metadata: {title: Lots Brocante Temploux, description: Affichage du nom du brocanteur à partir du numéro du lot, logo_img: 'asset:Brocante.jpg'}
