@@ -47,14 +47,6 @@ db_schema:
       admin_ui: {order: -1, width: 101}
       type: string
     title: LotsBrocante
-  zones:
-    client: search
-    server: full
-    columns:
-    - name: Zone
-      admin_ui: {order: 0, width: 149}
-      type: string
-    title: Zones
   files:
     client: none
     server: full
@@ -69,4 +61,12 @@ db_schema:
       admin_ui: {order: 2, width: 200}
       type: string
     title: Files
+  zones:
+    client: search
+    server: full
+    columns:
+    - name: Zone
+      admin_ui: {order: 0, width: 149}
+      type: string
+    title: Zones
 metadata: {title: Lots Brocante Temploux, description: Affichage du nom du brocanteur à partir du numéro du lot, logo_img: 'asset:Brocante.jpg'}
