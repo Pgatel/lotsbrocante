@@ -2,7 +2,8 @@ unique_ids:
   forms:
     LotsBrocante: POE4REJ5QAKKYRLMAGJJIBVZHATN667J
   modules: {}
-  server_modules: {}
+  server_modules:
+    UpdateLots: '1722791643470580486927927.3217'
   assets:
     Brocante.jpg: '1722700733679205563233760.93744'
     standard-page.html: NSFMPCZYQNHUF7PBFAJX6OAJ6JYZLKHM

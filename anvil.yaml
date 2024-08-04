@@ -7,12 +7,15 @@ runtime_options:
   version: 2
   client_version: '3'
   server_version: python3-sandbox
-  server_spec: {base: python310-standard}
+  server_spec: {base: python310-datascience}
 dependencies: []
 services:
 - source: /runtime/services/tables.yml
   client_config: {}
   server_config: {}
+- source: /runtime/services/anvil/files.yml
+  client_config: {}
+  server_config: {file_table: files}
 startup: {type: form, module: LotsBrocante}
 db_schema:
   lotsbrocante:
@@ -52,4 +55,18 @@ db_schema:
       admin_ui: {order: 0, width: 149}
       type: string
     title: Zones
+  files:
+    client: none
+    server: full
+    columns:
+    - name: path
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: file
+      admin_ui: {order: 1, width: 200}
+      type: media
+    - name: file_version
+      admin_ui: {order: 2, width: 200}
+      type: string
+    title: Files
 metadata: {title: Lots Brocante Temploux, description: Affichage du nom du brocanteur à partir du numéro du lot, logo_img: 'asset:Brocante.jpg'}
