@@ -27,7 +27,6 @@ def get_lots(pair, zone):
 # Read the 'LotsBrocante' table and return the lot corresponding to 'numero'
 @anvil.server.callable
 def get_lot(numero_lot):
-  print(numero_lot)
   f_lot = app_tables.lotsbrocante.search(NumeroLot=numero_lot)[0]
   d_return = {'Nom': f_lot['Nom'], 'Prénom': f_lot['Prénom'], 'Rue': f_lot['Rue'],
               'Numero': f_lot['Numero'], 'CodePostal': f_lot['Code_Postal'], 'Localité': f_lot['Localité'],

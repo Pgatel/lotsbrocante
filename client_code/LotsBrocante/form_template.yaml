@@ -47,9 +47,11 @@ components:
     - name: back
       properties: {text: '', icon: 'fa:backward', background: '#3ddab4', icon_align: top}
       type: Button
+      event_bindings: {click: back_click}
     - name: forward
       properties: {text: '', icon: 'fa:forward', background: '#3ddab4', icon_align: top}
       type: Button
+      event_bindings: {click: forward_click}
   - name: flow_panel_1
     properties: {}
     type: FlowPanel

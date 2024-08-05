@@ -19,6 +19,8 @@ class LotsBrocante(LotsBrocanteTemplate):
     #Read the database to obtain the info related to the number of 'lot'
     d_lot = anvil.server.call("get_lot", self.lot.selected_value)
     self.update_lot(d_lot)
+    self.i_lot = 0
+    self.back.enabled = False
 
   def update_lot(self, lot):
     self.nom.text = f"{lot['Nom']:40s}"
@@ -30,7 +32,19 @@ class LotsBrocante(LotsBrocanteTemplate):
     
   def lot_change(self, **event_args):
     """Search in datatable this number"""
-    d_lot = anvil.server.call("get_lot", self.lot.selected_value)
+    s_lot = self.lot.selected_value
+    d_lot = anvil.server.call("get_lot", s_lot)
+    self.i_lot = self.lot.items.index(s_lot)
+    print(self.i_lot)
+    if self.i_lot == 0:
+      self.back.enabled = False
+    else:
+      self.back.enabled = True
+    if self.i_lot == len(self.lot.items) - 1:
+      self.forward.enabled = False
+    else:
+      self.forward.enabled = True
+
     self.update_lot(d_lot)
 
   def populate_click(self, **event_args):
@@ -41,11 +55,31 @@ class LotsBrocante(LotsBrocanteTemplate):
     lots = anvil.server.call("get_lots", self.pair.checked, self.zone.selected_value)
     self.lot.items = lots
     d_lot = anvil.server.call("get_lot", self.lot.selected_value)
+    self.i_lot = 0
+    self.back.enabled = False
     self.update_lot(d_lot)
 
   def pair_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     lots = anvil.server.call("get_lots", self.pair.checked, self.zone.selected_value)
     self.lot.items = lots
+    self.i_lot = 0
+    self.back.enabled = False
     d_lot = anvil.server.call("get_lot", self.lot.selected_value)
     self.update_lot(d_lot)
+
+  def back_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    if self.i_lot > 0:
+      self.i_lot -= 1
+      s_lot = self.lot.items[self.i_lot]
+      self.lot.selected_value = s_lot
+      self.lot_change()
+
+  def forward_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    if self.i_lot < len(self.lot.items) - 1:
+      self.i_lot += 1
+      s_lot = self.lot.items[self.i_lot]
+      self.lot.selected_value = s_lot
+      self.lot_change()
