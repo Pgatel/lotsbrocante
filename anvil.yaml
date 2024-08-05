@@ -55,6 +55,12 @@ db_schema:
     - name: Surface
       admin_ui: {order: 9, width: 97}
       type: number
+    - name: LotsSamedi
+      admin_ui: {width: 200, order: 10}
+      type: string
+    - name: LotsDimanche
+      admin_ui: {width: 200, order: 11}
+      type: string
     title: LotsBrocante
   files:
     client: none

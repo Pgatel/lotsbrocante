@@ -30,7 +30,8 @@ def get_lot(numero_lot):
   f_lot = app_tables.lotsbrocante.search(NumeroLot=numero_lot)[0]
   d_return = {'Nom': f_lot['Nom'], 'Prénom': f_lot['Prénom'], 'Rue': f_lot['Rue'],
               'Numero': f_lot['Numero'], 'CodePostal': f_lot['Code_Postal'], 'Localité': f_lot['Localité'],
-              'Facade': f_lot['Facade'], 'Profondeur': f_lot['Profondeur'], 'Surface': f_lot['Surface']}
+              'Facade': f_lot['Facade'], 'Profondeur': f_lot['Profondeur'], 'Surface': f_lot['Surface'],
+              'LotsSamedi': f_lot['LotsSamedi'], 'LotsDimanche': f_lot['LotsDimanche']}
   return d_return
 
 @anvil.server.callable
@@ -52,11 +53,16 @@ def update_lots_brocante():
       lot['Localité'] = ''
     if pd.isna(lot['Code Postal']):
       lot['Code Postal'] = ''
+    if pd.isna(lot['ListeLotSamedi']):
+      lot['ListeLotSamedi'] = ''
+    if pd.isna(lot['ListeLotDimanche']):
+      lot['ListeLotDimanche'] = ''
 
     app_tables.lotsbrocante.add_row(Nom=lot['Nom'], Prénom=lot['Prénom'], NumeroLot=lot['No Lot'],
-                                   Rue=lot['Rue'], Numero=lot['Numero'], Code_Postal=lot['Code Postal'],
-                                   Localité=lot['Localité'], Zone=lot['Zone'], Facade=lot['Facade'],
-                                   Profondeur=lot['Profondeur'], Surface=lot['Surface'])
+                                    Rue=lot['Rue'], Numero=lot['Numero'], Code_Postal=lot['Code Postal'],
+                                    Localité=lot['Localité'], Zone=lot['Zone'], Facade=lot['Facade'],
+                                    Profondeur=lot['Profondeur'], Surface=lot['Surface'],
+                                    LotsSamedi=lot['ListeLotSamedi'], LotsDimanche=lot['ListeLotDimanche'])
   
   zones = lots[['Zone']].groupby('Zone').first().index
   df_zones = DataFrame(zones)

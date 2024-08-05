@@ -54,6 +54,38 @@ components:
       properties: {text: '', icon: 'fa:forward', background: '#3ddab4', icon_align: top}
       type: Button
       event_bindings: {click: forward_click}
+  - name: flow_panel_5
+    properties: {}
+    type: FlowPanel
+    layout_properties: {grid_position: 'LVLRPE,ILVNAX'}
+    components:
+    - name: spacer_5
+      properties: {height: 32}
+      type: Spacer
+    - name: label_2
+      properties: {text: ' Facade: ', foreground: '', background: '#a3e4e4', spacing_above: none, border: '', font_size: 10}
+      type: Label
+      layout_properties: {width: null}
+    - name: facade
+      properties: {background: '#a3e4e4', spacing_above: none, bold: true, italic: true, border: '0', font_size: 10}
+      type: Label
+      layout_properties: {}
+    - name: label_4
+      properties: {text: ' Profondeur: ', background: '#a3e4e4', spacing_above: none, font_size: 10}
+      type: Label
+      layout_properties: {}
+    - name: profondeur
+      properties: {background: '#a3e4e4', spacing_above: none, italic: true, bold: true, font_size: 10}
+      type: Label
+      layout_properties: {}
+    - name: label_6
+      properties: {text: ' Surface: ', background: '#a3e4e4', spacing_above: none, font_size: 10}
+      type: Label
+      layout_properties: {}
+    - name: surface
+      properties: {background: '#a3e4e4', spacing_above: none, bold: true, italic: true, font_size: 10}
+      type: Label
+      layout_properties: {}
   - name: flow_panel_1
     properties: {}
     type: FlowPanel
@@ -63,7 +95,7 @@ components:
       properties: {height: 32}
       type: Spacer
     - name: nom
-      properties: {background: '#abebc6'}
+      properties: {background: '#abebc6', align: left}
       type: Label
       layout_properties: {}
     - name: prenom
@@ -100,6 +132,22 @@ components:
       layout_properties: {}
     - name: localite
       properties: {background: '#f5cba7'}
+      type: Label
+      layout_properties: {}
+  - name: flow_panel_7
+    properties: {}
+    type: FlowPanel
+    layout_properties: {grid_position: 'MEEGMP,RPYZHP'}
+    components:
+    - name: spacer_6
+      properties: {height: 32}
+      type: Spacer
+    - name: lots_samedi
+      properties: {background: '#fcf3cf', align: left}
+      type: Label
+      layout_properties: {}
+    - name: lots_dimanche
+      properties: {background: '#fcf3cf', align: left}
       type: Label
       layout_properties: {}
 - name: flow_panel_3

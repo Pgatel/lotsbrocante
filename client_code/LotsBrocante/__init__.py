@@ -17,19 +17,25 @@ class LotsBrocante(LotsBrocanteTemplate):
     b_pair = self.pair_impair.selected_value == 'Pair'
     lots = anvil.server.call("get_lots", b_pair, self.zone.selected_value)
     self.lot.items = lots
-    #Read the database to obtain the info related to the number of 'lot'
-    d_lot = anvil.server.call("get_lot", self.lot.selected_value)
-    self.update_lot(d_lot)
+    if not self.populate.visible:
+      #Read the database to obtain the info related to the number of 'lot'
+      d_lot = anvil.server.call("get_lot", self.lot.selected_value)
+      self.update_lot(d_lot)
     self.i_lot = 0
     self.back.enabled = False
 
   def update_lot(self, lot):
-    self.nom.text = f"{lot['Nom']:40s}"
-    self.prenom.text = f"{lot['Prénom']:40s}"
-    self.rue.text = f"{lot['Rue']:40s}"
-    self.numero.text = f"{lot['Numero']:10s}"
-    self.code_postal.text = f"{lot['CodePostal']:10s}"
-    self.localite.text = f"{lot['Localité']:40s}"
+    self.nom.text = f" {lot['Nom']:32s} "
+    self.prenom.text = f" {lot['Prénom']:28s} "
+    self.rue.text = f" {lot['Rue']:50s} "
+    self.numero.text = f" {lot['Numero']:13s} "
+    self.code_postal.text = f" {lot['CodePostal']:18s} "
+    self.localite.text = f" {lot['Localité']:42s} "
+    self.facade.text = f" {lot['Facade']:4.1f}m "
+    self.profondeur.text = f"{lot['Profondeur']:4.1f}m "
+    self.surface.text = f" {lot['Surface']:5.1f}m² "
+    self.lots_samedi.text = f"S:{lot['LotsSamedi']} "
+    self.lots_dimanche.text = f"D:{lot['LotsDimanche']} "
     
   def lot_change(self, **event_args):
     """Search in datatable this number"""
