@@ -10,15 +10,29 @@ from pandas import DataFrame
 @anvil.server.callable
 def get_zone():
   l_zone = [row['zone'] for row in app_tables.zones.search()]
-  print(l_zone)
   return l_zone
 
+# Read the 'LotsBrocante' table and return the lots corresponding to the 'zone' + 'Pair/impair'
+# Used to update the comboBox 'lot'
 @anvil.server.callable
 def get_lots(pair, zone):
-  print(f'Pair:{pair}; zone:{zone}')
-  filtered = app_tables.lotsbrocante.search(Zone=zone)
-  print(filtered)
-  return ['A024', 'A026']
+  if pair:
+    filter = f'{zone} pair'
+  else:
+    filter = f'{zone} impair'
+  filtered = app_tables.lotsbrocante.search(Zone=filter)
+  l_lots = [row['NumeroLot'] for row in filtered]
+  return l_lots
+
+# Read the 'LotsBrocante' table and return the lot corresponding to 'numero'
+@anvil.server.callable
+def get_lot(numero_lot):
+  print(numero_lot)
+  f_lot = app_tables.lotsbrocante.search(NumeroLot=numero_lot)[0]
+  d_return = {'Nom': f_lot['Nom'], 'Prénom': f_lot['Prénom'], 'Rue': f_lot['Rue'],
+              'Numero': f_lot['Numero'], 'CodePostal': f_lot['Code_Postal'], 'Localité': f_lot['Localité'],
+              'Facade': f_lot['Facade'], 'Profondeur': f_lot['Profondeur'], 'Surface': f_lot['Surface']}
+  return d_return
 
 @anvil.server.callable
 def update_lots_brocante():
@@ -39,7 +53,7 @@ def update_lots_brocante():
       lot['Localité'] = ''
     if pd.isna(lot['Code Postal']):
       lot['Code Postal'] = ''
-    print(lot)
+
     app_tables.lotsbrocante.add_row(Nom=lot['Nom'], Prénom=lot['Prénom'], NumeroLot=lot['No Lot'],
                                    Rue=lot['Rue'], Numero=lot['Numero'], Code_Postal=lot['Code Postal'],
                                    Localité=lot['Localité'], Zone=lot['Zone'], Facade=lot['Facade'],
