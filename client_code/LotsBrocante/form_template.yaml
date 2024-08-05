@@ -5,6 +5,7 @@ container:
     html: |-
       <div anvil-slot="default" style="border: 2px solid lightblue">
       </div>
+  data_bindings: []
 components:
 - name: logo
   properties: {source: _/theme/Brocante.jpg, height: 59}
@@ -15,11 +16,12 @@ components:
   name: content_panel
   layout_properties: {slot: default}
   components:
-  - name: pair
-    properties: {text: PAIR, checked: true, background: 'theme:On Secondary', align: center}
-    type: CheckBox
-    layout_properties: {grid_position: 'NWOAWV,RBIRGN'}
-    event_bindings: {change: pair_change}
+  - name: pair_impair
+    properties:
+      items: [Pair, Impair]
+    type: DropDown
+    layout_properties: {grid_position: 'NWOAWV,JHVISR'}
+    event_bindings: {change: pair_impair_change}
   - name: zone
     properties:
       items: [A, B]
@@ -33,7 +35,7 @@ components:
   - name: lot
     properties: {}
     type: DropDown
-    layout_properties: {grid_position: 'NWOAWV,GCOSMI FWAKWK,WCHEHT'}
+    layout_properties: {grid_position: 'NWOAWV,GCOSMI'}
     event_bindings: {change: lot_change}
   - name: flow_panel_6
     properties: {}
@@ -57,6 +59,9 @@ components:
     type: FlowPanel
     layout_properties: {grid_position: 'COHNRL,NZQJFF'}
     components:
+    - name: spacer_2
+      properties: {height: 32}
+      type: Spacer
     - name: nom
       properties: {background: '#abebc6'}
       type: Label
@@ -70,6 +75,9 @@ components:
     type: FlowPanel
     layout_properties: {grid_position: 'NXVXMO,IQUKXM'}
     components:
+    - name: spacer_3
+      properties: {height: 32}
+      type: Spacer
     - name: rue
       properties: {background: '#f5cba7'}
       type: Label
@@ -83,6 +91,9 @@ components:
     type: FlowPanel
     layout_properties: {grid_position: 'BCBMKN,JWFJQT'}
     components:
+    - name: spacer_4
+      properties: {height: 32}
+      type: Spacer
     - name: code_postal
       properties: {background: '#f5cba7'}
       type: Label

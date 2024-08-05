@@ -14,7 +14,8 @@ class LotsBrocante(LotsBrocanteTemplate):
     zones = anvil.server.call("get_zone")
     self.zone.items = zones
     # Read the 'LotsBrocante' table to update the field 'lot'
-    lots = anvil.server.call("get_lots", self.pair.checked, self.zone.selected_value)
+    b_pair = self.pair_impair.selected_value == 'Pair'
+    lots = anvil.server.call("get_lots", b_pair, self.zone.selected_value)
     self.lot.items = lots
     #Read the database to obtain the info related to the number of 'lot'
     d_lot = anvil.server.call("get_lot", self.lot.selected_value)
@@ -35,7 +36,6 @@ class LotsBrocante(LotsBrocanteTemplate):
     s_lot = self.lot.selected_value
     d_lot = anvil.server.call("get_lot", s_lot)
     self.i_lot = self.lot.items.index(s_lot)
-    print(self.i_lot)
     if self.i_lot == 0:
       self.back.enabled = False
     else:
@@ -52,16 +52,18 @@ class LotsBrocante(LotsBrocanteTemplate):
 
   def zone_change(self, **event_args):
     """This method is called when an item is selected"""
-    lots = anvil.server.call("get_lots", self.pair.checked, self.zone.selected_value)
+    b_pair = self.pair_impair.selected_value == 'Pair'
+    lots = anvil.server.call("get_lots", b_pair, self.zone.selected_value)
     self.lot.items = lots
     d_lot = anvil.server.call("get_lot", self.lot.selected_value)
     self.i_lot = 0
     self.back.enabled = False
     self.update_lot(d_lot)
 
-  def pair_change(self, **event_args):
+  def pair_impair_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
-    lots = anvil.server.call("get_lots", self.pair.checked, self.zone.selected_value)
+    b_pair = self.pair_impair.selected_value == 'Pair'
+    lots = anvil.server.call("get_lots", b_pair, self.zone.selected_value)
     self.lot.items = lots
     self.i_lot = 0
     self.back.enabled = False
