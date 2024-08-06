@@ -34,13 +34,11 @@ class LotsBrocante(LotsBrocanteTemplate):
     self.facade.text = f" {lot['Facade']:4.1f}m "
     self.profondeur.text = f"{lot['Profondeur']:4.1f}m "
     self.surface.text = f" {lot['Surface']:5.1f}m² "
-    self.lots_samedi.text = f"S:{lot['LotsSamedi']} "
-    self.lots_dimanche.text = f"D:{lot['LotsDimanche']} "
+    self.lots_samedi.text = f"{lot['LotsSamedi']} "
+    self.lots_dimanche.text = f"{lot['LotsDimanche']} "
     
-  def lot_change(self, **event_args):
-    """Search in datatable this number"""
+  def verify_back_forward(self):
     s_lot = self.lot.selected_value
-    d_lot = anvil.server.call("get_lot", s_lot)
     self.i_lot = self.lot.items.index(s_lot)
     if self.i_lot == 0:
       self.back.enabled = False
@@ -51,7 +49,12 @@ class LotsBrocante(LotsBrocanteTemplate):
     else:
       self.forward.enabled = True
 
+  def lot_change(self, **event_args):
+    """Search in datatable this number"""
+    s_lot = self.lot.selected_value
+    d_lot = anvil.server.call("get_lot", s_lot)
     self.update_lot(d_lot)
+    self.verify_back_forward()
 
   def populate_click(self, **event_args):
     anvil.server.call("update_lots_brocante")
@@ -63,8 +66,8 @@ class LotsBrocante(LotsBrocanteTemplate):
     self.lot.items = lots
     d_lot = anvil.server.call("get_lot", self.lot.selected_value)
     self.i_lot = 0
-    self.back.enabled = False
     self.update_lot(d_lot)
+    self.verify_back_forward()
 
   def pair_impair_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
@@ -75,6 +78,7 @@ class LotsBrocante(LotsBrocanteTemplate):
     self.back.enabled = False
     d_lot = anvil.server.call("get_lot", self.lot.selected_value)
     self.update_lot(d_lot)
+    self.verify_back_forward()
 
   def back_click(self, **event_args):
     """This method is called when the button is clicked"""
