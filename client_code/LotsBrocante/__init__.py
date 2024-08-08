@@ -29,9 +29,9 @@ class LotsBrocante(LotsBrocanteTemplate):
   def update_lot(self, lot):
     self.nom.text = f" {lot['Nom']:32s} "
     self.prenom.text = f" {lot['Prénom']:28s} "
-    self.rue.text = f" {lot['Rue']:50s} "
-    self.numero.text = f" {lot['Numero']:13s} "
-    self.code_postal.text = f" {lot['CodePostal']:18s} "
+    self.rue.text = f" {lot['Rue']:48s} "
+    self.numero.text = f" {lot['Numero']:10s} "
+    self.code_postal.text = f" {lot['CodePostal']:12s} "
     self.localite.text = f" {lot['Localité']:42s} "
     self.facade.text = f" {lot['Facade']:4.1f}m "
     self.profondeur.text = f"{lot['Profondeur']:4.1f}m "
