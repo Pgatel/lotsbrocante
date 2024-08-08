@@ -10,9 +10,11 @@ class LotsBrocante(LotsBrocanteTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
     # Read the 'Zones' table to update the field 'zone'
     zones = anvil.server.call("get_zone")
     self.zone.items = zones
+
     # Read the 'LotsBrocante' table to update the field 'lot'
     b_pair = self.pair_impair.selected_value == 'Pair'
     lots = anvil.server.call("get_lots", b_pair, self.zone.selected_value)
@@ -82,16 +84,26 @@ class LotsBrocante(LotsBrocanteTemplate):
 
   def back_click(self, **event_args):
     """This method is called when the button is clicked"""
-    if self.i_lot > 0:
-      self.i_lot -= 1
-      s_lot = self.lot.items[self.i_lot]
-      self.lot.selected_value = s_lot
-      self.lot_change()
+    while(True):
+      if self.i_lot > 0:  # test if we are at the begining of the list
+        self.i_lot -= 1
+        s_lot = self.lot.items[self.i_lot]
+        self.lot.selected_value = s_lot
+        lot = anvil.server.call("get_lot", s_lot)
+        if self.nom.text == f" {lot['Nom']:32s} " and self.prenom.text == f" {lot['Prénom']:28s} ":
+          continue  # same name - first name => preceding one
+        self.lot_change()
+      break
 
   def forward_click(self, **event_args):
     """This method is called when the button is clicked"""
-    if self.i_lot < len(self.lot.items) - 1:
-      self.i_lot += 1
-      s_lot = self.lot.items[self.i_lot]
-      self.lot.selected_value = s_lot
-      self.lot_change()
+    while(True):
+      if self.i_lot < len(self.lot.items) - 1: # test if we are at the end of the list
+        self.i_lot += 1
+        s_lot = self.lot.items[self.i_lot]
+        self.lot.selected_value = s_lot
+        lot = anvil.server.call("get_lot", s_lot)  # get the new info
+        if self.nom.text == f" {lot['Nom']:32s} " and self.prenom.text == f" {lot['Prénom']:28s} ":
+          continue  # same name - first name => next one
+        self.lot_change()
+      break
