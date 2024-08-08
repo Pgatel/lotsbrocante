@@ -34,6 +34,7 @@ def get_lot(numero_lot):
               'LotsSamedi': f_lot['LotsSamedi'], 'LotsDimanche': f_lot['LotsDimanche']}
   return d_return
 
+# Update the anvil data table via the Excel file generated from Access
 @anvil.server.callable
 def update_lots_brocante():
   path_lot = data_files['Liste des Lots réservés.xlsx']
